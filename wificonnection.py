@@ -19,8 +19,7 @@ def createQRCode(ssid, password):
                      box_size=15,
                      border=5
                      )
-  data = 'WIFI:S:<{}>;T:<WPA|WEP|>;P:<{}>;H:<true|false|>;'.format(ssid,
-                                                                   password)
+  data = 'WIFI:S:<{}>;T:<WPA>;P:<{}>;H:<false>;'.format(ssid, password)
   qr.add_data(data)
   qr.make(fit=True)
   img = qr.make_image(fill='black', back_color='white')
@@ -32,7 +31,8 @@ options = getArguments()
 if options.ssid is not None:
   if options.password is not None:
     createQRCode(ssid=options.ssid, password=options.password)
-    print('Your QR Code is generated successfully for the {} SSID',format(options.ssid))
+    print('Your QR Code is generated successfully for the {} SSID'.format(
+      options.ssid))
   else:
     print('Please enter your {} network password'.format(options.ssid))
 else:
